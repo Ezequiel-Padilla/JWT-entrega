@@ -4,6 +4,7 @@ import App from '../App';
 import NavBar from '../components/NavBar';
 import About from '../pages/About';
 import Login from '../pages/Login';
+import Register from '../pages/Register';
 import NavRouter from './NavRouter';
 
 const Routes = () => (
@@ -13,6 +14,9 @@ const Routes = () => (
     </NavRouter>
     <NavRouter path="/login">
       <Login />
+    </NavRouter>
+    <NavRouter path="/register">
+      <Register />
     </NavRouter>
     <Route path="/">
       <NavBar />

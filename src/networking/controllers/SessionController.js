@@ -10,6 +10,15 @@ class SessionController {
     });
     TokenService.setUser(response.data);
   }
+
+  static async register(username, password, email) {
+    const response = await axios.post(generateBackendURL('/auth/signup'), {
+      username,
+      password,
+      email,
+    });
+    TokenService.setUser(response.data);
+  }
 }
 
 export default SessionController;
