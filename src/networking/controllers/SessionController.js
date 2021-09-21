@@ -19,6 +19,21 @@ class SessionController {
     });
     TokenService.setUser(response.data);
   }
+
+  static async refreshToken() {
+    const refreshToken = TokenService.getLocalRefreshToken();
+    const response = await axios.post(generateBackendURL('/auth/refreshtoken'), {
+      refreshToken,
+    });
+    TokenService.updateLocalAccessToken(response.data.accessToken);
+    TokenService.updateLocalRefreshToken(response.data.refreshToken);
+  }
+
+  static async getUser() {
+    const accessToken = TokenService.getLocalAccessToken();
+    const response = await axios.get(generateBackendURL('/test/user'), { headers: { Authorization: `Bearer ${accessToken}` } });
+    return response.data;
+  }
 }
 
 export default SessionController;

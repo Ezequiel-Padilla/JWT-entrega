@@ -14,6 +14,12 @@ const updateLocalAccessToken = (token) => {
   localStorage.setItem('user', JSON.stringify(user));
 };
 
+const updateLocalRefreshToken = (token) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  user.refreshToken = token;
+  localStorage.setItem('user', JSON.stringify(user));
+};
+
 const getUser = () => JSON.parse(localStorage.getItem('user'));
 
 const setUser = (user) => {
@@ -29,6 +35,7 @@ const TokenService = {
   getLocalRefreshToken,
   getLocalAccessToken,
   updateLocalAccessToken,
+  updateLocalRefreshToken,
   getUser,
   setUser,
   removeUser,
